@@ -61,7 +61,7 @@ public class Podometro {
     public void configurar(double queAltura, char queSexo) {
         if (queSexo == HOMBRE|| queSexo == MUJER) {
             sexo = queSexo;
-            queAltura = altura;
+            altura = queAltura;
             if (sexo == HOMBRE){
                 longitudZancada = Math.ceil(altura * ZANCADA_HOMBRE);
             }
@@ -86,7 +86,7 @@ public class Podometro {
      *   (leer enunciado del ejercicio)
      */
     public void registrarCaminata(int pasos, int dia, int horaInicio,int horaFin) {
-
+        
        
 
     }
@@ -99,7 +99,9 @@ public class Podometro {
      *  
      */
     public void printConfiguracion() {
-
+        System.out.println("Configuración del podómetro\n*********************************\n" +
+        "Altura: " + altura + " mtos\n" + "Sexo: " + sexo +"\nLongitud zancada: " + 
+        longitudZancada + " mtos");
         
 
     }
@@ -111,24 +113,17 @@ public class Podometro {
      * (leer enunciado)
      *  
      */
-    public void printEstadísticas() {
-
-        
-
+    public void printEstadísticas() {    
+          
     }
-
-   
 
     /**
      *  Calcula y devuelve un String que representa el nombre del día
      *  en el que se ha caminado más pasos - "SÁBADO"   "DOMINGO" o  "LABORABLES"
      */
     public String diaMayorNumeroPasos() {
-
-         
-
+        
     }
-    
     
     /**
      * Restablecer los valores iniciales del podómetro
