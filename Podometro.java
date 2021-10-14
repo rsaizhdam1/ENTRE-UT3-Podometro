@@ -86,9 +86,34 @@ public class Podometro {
      *   (leer enunciado del ejercicio)
      */
     public void registrarCaminata(int pasos, int dia, int horaInicio,int horaFin) {
-        
-       
-
+        int soloHoraInicio = (int) Math.floor(horaInicio / 100);
+        int minutosInicio = (soloHoraInicio * 60) + horaInicio % 100;
+        int soloHoraFin = (int) Math.floor(horaFin / 100);
+        int minutosFin = (soloHoraFin * 60) + horaFin % 100;
+        tiempo += minutosFin - minutosInicio;
+        totalDistanciaSemana += pasos * longitudZancada;
+        switch (dia){
+            case 1: 
+                totalPasosLaborables += pasos;
+                break;
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+                totalPasosSabado += pasos;
+                totalDistanciaFinSemana += pasos * longitudZancada; 
+                break;
+            case 7: 
+                totalPasosDomingo += pasos;
+                totalDistanciaFinSemana += pasos * longitudZancada;
+                break;
+            default:
+                break;
+        }
+        if (horaInicio >= 2100) {
+            caminatasNoche++;
+        }
     }
     
      /**
@@ -99,11 +124,11 @@ public class Podometro {
      *  
      */
     public void printConfiguracion() {
-        System.out.println("Configuración del podómetro\n*********************************\n" +
-        "Altura: " + altura + " mtos\n" + "Sexo: " + sexo +"\nLongitud zancada: " + 
+        System.out.println("Configuración del podómetro\n*********************************");
+        System.out.println("Altura: " + altura + " mtos\n" + "Sexo: " + sexo +"\nLongitud zancada: " + 
         longitudZancada + " mtos");
         
-
+        
     }
 
     /**
@@ -113,7 +138,7 @@ public class Podometro {
      * (leer enunciado)
      *  
      */
-    public void printEstadísticas() {    
+    public void printEstadisticas() {    
           
     }
 
@@ -132,9 +157,16 @@ public class Podometro {
      *  
      */    
     public void reset() {
-
-        
-
+        altura = 0;
+        sexo = MUJER;
+        longitudZancada = 0;
+        totalPasosLaborables = 0;
+        totalPasosSabado = 0;
+        totalPasosDomingo = 0;
+        totalDistanciaSemana = 0;
+        totalDistanciaFinSemana = 0;
+        tiempo = 0;
+        caminatasNoche = 0;
     }
 
 }
